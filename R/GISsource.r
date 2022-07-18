@@ -48,30 +48,89 @@ distance<-function(xl,yl){
 				}
 
 ### 最寄り点の抽出　list<-検索先ベクトル・データ　q<-問い合わせ・データ
+#' Title
+#'
+#' @param list
+#' @param q
+#'
+#' @return
+#' @export
+#'
+#' @examples
 nearest <-  function(list,q){which(abs(list-q)==min(abs(list-q)))}[1]
 
 ##　カシミールtrkファイルの行から緯度、経度データ取得　(ddd.dddddd 形式で保存されたもの)
+#' Title
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
 lonlat <- function(s) {as.numeric(c(substr(s,17,27),substr(s,5,14)))}
 
 ##　カシミールwptファイルの行から緯度、経度データ取得　(ddd.dddddd 形式で保存されたもの)
+#' Title
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
 lonlatWPT <- function(s) {as.numeric(c(substr(s,24,34),substr(s,12,21)))}
 
 ##　カシミールwptファイルの行からラベルデータ取得　
+#' Title
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
 textWPT <- function(s) {sub(" .* ","",substr(s,61,100))}
 
 ##### trkll　カシミールのトラック行データから緯度・経度を抽出する関数
+#' Title
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
 trkll<-function(s){
 lon=as.numeric(substr(s,17,27));lat=as.numeric(substr(s,5,14))
 c(lon,lat)
 }
 
 ##### trkXY　カシミールのトラック行データからXYを抽出する関数
+#' Title
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
 trkXY<-function(s){
 lon=as.numeric(substr(s,17,27));lat=as.numeric(substr(s,5,14))
 ll2xy(lat*degree,lon*degree) ###+GPSdxy
 }
 
 ##### trkXYn　カシミールのn番目のトラックデータからXYを抽出する関数
+#' Title
+#'
+#' @param dir
+#' @param filename
+#' @param ii
+#'
+#' @return
+#' @export
+#'
+#' @examples
 trkXYn<-function(dir,filename,ii){
 	##dir=GISdir;filename="BeltTransect.trk"
  	l<-readLines(paste(dir,"/",filename,sep=""))
@@ -88,7 +147,15 @@ trkXYn<-function(dir,filename,ii){
 	(TRKy<-d[1:(n/2)])
 	(d<-matrix(c(TRKx,TRKy),ncol=2))
 				}
-##### trkXYall　カシミールの全トラックデータからリスト形式でXYを抽出する関数
+##### trkXYall　
+#' カシミールの全トラックデータからリスト形式でXYを抽出する関数
+#'
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
 trk<-function(filename){
 	### filename="../gps/位山演習林林道.trk"
 
@@ -115,6 +182,14 @@ trk<-function(filename){
 				}
 
 ##### wptXY　カシミールのウェイポイント・データからXY、ラベルを抽出する関数
+#' Title
+#'
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
  wpt<-function(filename){
 	##filename<-"../gps/演習林範囲2.wpt"
  	l<-readLines(filename)
@@ -149,6 +224,15 @@ trk<-function(filename){
 ####################################
 ####################################
 
+#' Title
+#'
+#' @param JGD7dv
+#' @param JGD7dh
+#'
+#' @return
+#' @export
+#'
+#' @examples
 XY7Code <-function(JGD7dv,JGD7dh){
 (JGD7code<-paste(
 LETTERS[11+floor(-JGD7dv/30000)],
@@ -169,6 +253,15 @@ list(JGD7code,dn,dv,dh)
 
 
 
+#' Title
+#'
+#' @param JGD7dv
+#' @param JGD7dh
+#'
+#' @return
+#' @export
+#'
+#' @examples
 AltXY7<-function(JGD7dv,JGD7dh){
 fn<-XY7Code(JGD7dv,JGD7dh)[[1]]
 dn<-XY7Code(JGD7dv,JGD7dh)[[2]]
@@ -201,12 +294,35 @@ e2 = sqrt((e1^2)/(1 - e1^2));
 radian <- function(degree) { degree/180*pi }
 
 ######　角度表現　文字<->数値
+#' Title
+#'
+#' @param d
+#'
+#' @return
+#' @export
+#'
+#' @examples
 s2n<-function(d){
    i=nchar(unlist(strsplit(d,"\\."))[1])+1;
   as.numeric(substr(d,1,i-1))+as.numeric(substr(d,i+1,i+2))/60+
   (as.numeric(substr(d,i+3,i+4))+as.numeric(paste(".",substr(d,i+5,20),sep="")))/3600
    }
 
+
+#' Title
+#'
+#' @param d
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' d=137.13416566
+#' n2s(d)
+#' s2n(n2s(d))
+#' #########  第7系原点
+#' lat0 = s2n("36.00000")*degree;
+#' lon0 = s2n("137.100000")*degree;
 
 n2s<-function(d)
 {s1 = floor(d);
@@ -216,26 +332,21 @@ n2s<-function(d)
     s3 = substring(10000 + 10*d3, 3, 5);
        paste(s1,".", s2 ,s3,sep="")}
 
-######### 動作チェック
-d=137.13416566
-n2s(d)
-s2n(n2s(d))
-
-#########  第7系原点
-lat0 = s2n("36.00000")*degree;
-lon0 = s2n("137.100000")*degree;
-d="137.100000"
-d=as.numeric(d);floor(d)+(100*d-floor(100*d))/60+(d*10000-floor(d*10000))/3600
-floor(d)
-100*(d-floor(d))/60
-+100*(d*100-floor(d*100))/3600
 
 
-100*(d-floor(d))/60
 
-d=1.23456
-(d-floor(d))
 
+
+#' Title
+#'
+#' @param lat
+#' @param lat00
+#' @param lon00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 S<-function(lat,lat00="36.00000",lon00="137.100000"){
 　##### lat00・lon00 座標系原点の緯度・経度　【デフォルトは第7系】
 　#####　http://www.gsi.go.jp/LAW/heimencho.html
@@ -282,6 +393,17 @@ S<-function(lat,lat00="36.00000",lon00="137.100000"){
 
 
 
+#' Title
+#'
+#' @param x
+#' @param y
+#' @param lat00
+#' @param lon00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 xy2ll<-function(x,y,lat00="36.00000",lon00="137.100000"){
 　##### lat00・lon00 座標系原点の緯度・経度　【デフォルトは第7系】
 　#####　http://www.gsi.go.jp/LAW/heimencho.html
@@ -325,6 +447,17 @@ xy2ll<-function(x,y,lat00="36.00000",lon00="137.100000"){
 
 
 
+#' Title
+#'
+#' @param lat
+#' @param lon
+#' @param lat00
+#' @param lon00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 ll2xy<-function (lat,lon,lat00="36.00000",lon00="137.100000"){
 　##### lat00・lon00 座標系原点の緯度・経度　【デフォルトは第7系】
 　#####　http://www.gsi.go.jp/LAW/heimencho.html
@@ -355,6 +488,17 @@ ll2xy<-function (lat,lon,lat00="36.00000",lon00="137.100000"){
 ###  R image ->   Grass ASCII raster grid
 
 
+#' Title
+#'
+#' @param we
+#' @param sn
+#' @param m
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
 R2Grass_AsciiRaster<-function(we,sn,m,filename){
 	## we<-x;sn<-y;m<-dem2m
 	rows=length(sn);cols=length(we)
@@ -383,6 +527,14 @@ R2Grass_AsciiRaster<-function(we,sn,m,filename){
 
 ### Grass ASCII raster grid -> R image
 
+#' Title
+#'
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
 Grass2R_AsciiRaster<-function(filename){
 
 	d0<-readLines(filename)    ### ex. filename<-"ascii-grid-dem.txt"
@@ -409,6 +561,18 @@ Grass2R_AsciiRaster<-function(filename){
 ###　塗りつぶし関数
 #######################################################
 
+#' Title
+#'
+#' @param xnn
+#' @param ynn
+#' @param m
+#' @param cl
+#' @param cl00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 fill_HL<-function(xnn,ynn,m,cl,cl00){
 	ynn1<-range(ynn)[1]; ynn2<-range(ynn)[2];
 	x12y<-c()
@@ -504,6 +668,22 @@ fill_<-function(x,y,m,cl,cl00){
 #######################################################
 #######################################################
 
+#' Title
+#'
+#' @param px00
+#' @param py00
+#' @param p1x
+#' @param p1y
+#' @param xaxis
+#' @param yaxis
+#' @param m
+#' @param cl
+#' @param cl00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 Polygon2Raster<-function(px00,py00,p1x,p1y,xaxis,yaxis,m,cl,cl00){
 
                         ###px00,py00,p1x,p1y,xaxis,yaxis,m,cl,cl00
@@ -567,6 +747,17 @@ m[cbind(xnn,ynn)]<-cl
 
 
 
+#' Title
+#'
+#' @param PolygonsList
+#' @param Points
+#' @param xaxis
+#' @param yaxis
+#'
+#' @return
+#' @export
+#'
+#' @examples
 PolygonsList2Raster<-function(PolygonsList,Points,xaxis,yaxis){
 	pl<-PolygonsList
 	p<-Points
@@ -585,6 +776,18 @@ PolygonsList2Raster<-function(PolygonsList,Points,xaxis,yaxis){
 
 ######################
 ###### 座標の回転
+#' Title
+#'
+#' @param XX
+#' @param YY
+#' @param x00
+#' @param y00
+#' @param deg
+#'
+#' @return
+#' @export
+#'
+#' @examples
 RotateXY<-function(XX,YY,x00,y00,deg){
 ## XX<-c(0,2,1);YY<-c(0,0,2);x00<-0;y00<-0;deg<-45
 	dx=XX-x00; dy=YY-y00; dl=sqrt(dx^2+dy^2);
@@ -594,6 +797,14 @@ RotateXY<-function(XX,YY,x00,y00,deg){
 ######################
 
 ### GIMPで作成したパスファイルを.svgでエクスポートし座標データを抽出する
+#' Title
+#'
+#' @param f
+#'
+#' @return
+#' @export
+#'
+#' @examples
 svgXY<-function(f){
 	l<-readLines(f)
 	ll<-strsplit(l,split=c(" "));ll<-unlist(ll)
@@ -626,6 +837,17 @@ for(ii in 1:length(lll))text(mean(xy[[ii]][,1]),mean(xy[[ii]][,2]),ii,cex=0.7,co
 #######################################
 			}
 
+#' Title
+#'
+#' @param px00
+#' @param py00
+#' @param xaxis
+#' @param yaxis
+#'
+#' @return
+#' @export
+#'
+#' @examples
 hokan<-function(px00,py00,xaxis,yaxis){
 
 	##############################################
@@ -671,6 +893,17 @@ hokan<-function(px00,py00,xaxis,yaxis){
 
 
 
+#' Title
+#'
+#' @param xaxis
+#' @param yaxis
+#' @param px00
+#' @param py00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 l2r<-function(xaxis,yaxis,px00,py00){
 
 	##############################################
@@ -691,6 +924,16 @@ l2r<-function(xaxis,yaxis,px00,py00){
 	return(m)
 										}
 
+#' Title
+#'
+#' @param xaxis
+#' @param yaxis
+#' @param pl
+#'
+#' @return
+#' @export
+#'
+#' @examples
 ll2r<-function(xaxis,yaxis,pl){
 
         ##############################################
@@ -715,6 +958,14 @@ ll2r<-function(xaxis,yaxis,pl){
 
 
 
+#' Title
+#'
+#' @param v0
+#'
+#' @return
+#' @export
+#'
+#' @examples
 split0<-function(v0){
 	##v0<-c(1,2,3,0,4,5,6,0,0,7,8)
 	i<-which(v0!=0)					#### 対象点抽出
@@ -727,12 +978,33 @@ split0<-function(v0){
 				}
 
 #### saitan
+#' Title
+#'
+#' @param xx0
+#' @param yy0
+#' @param xx
+#' @param yy
+#'
+#' @return
+#' @export
+#'
+#' @examples
 saitan<-function(xx0,yy0,xx,yy){
 	saitan0<-function(xx0,yy0)min(sqrt((xx0-xx)^2+(yy0-yy)^2))
 	mapply(saitan0,xx0,yy0)
 				}
 
-TotalLength<-function(XY)sum(distance(XY[,1],XY[,2]))
+#' Title
+#'
+#' @param XY
+#'
+#' @return
+#' @export
+#'
+#' @examples
+TotalLength<-function(XY){
+  sum(distance(XY[,1],XY[,2]))
+}
 
 TotalLength2<-function(l,pn){
 	#####　リストに分割された道を結合　
@@ -752,6 +1024,23 @@ TotalLength2<-function(l,pn){
 
 
 ######
+#' Title
+#'
+#' @param X
+#' @param Y
+#' @param x1
+#' @param y1
+#' @param x2
+#' @param y2
+#' @param x1_
+#' @param y1_
+#' @param x2_
+#' @param y2_
+#'
+#' @return
+#' @export
+#'
+#' @examples
 affineXY <- function(X,Y,x1,y1,x2,y2,x1_,y1_,x2_,y2_){
 	#X=c(1:5,1:5);Y=rep(c(1,5),each=5) 	# oroginal coordinates
 	#x1=1;y1=1;x2=5;y2=5				# oroginal coordinates of 2 points
@@ -765,14 +1054,19 @@ affineXY <- function(X,Y,x1,y1,x2,y2,x1_,y1_,x2_,y2_){
 }
 
 
-#####
-#パッケージの呼び出し
-library("shapefiles")
-
 
 ###########################################
+#' Title
+#'
+#' @param filename
+#' @param id
+#'
+#' @return
+#' @export
+#'
+#' @examples
 shplines <- function(filename="./shp/2021池塘line-4",id="ID_1"){
-	d <- read.shapefile(filename)
+	d <- shapefiles::read.shapefile(filename)
 	dbf <- d$dbf$dbf	# names(dbf)
 	ID<-as.vector(d$dbf$dbf[,id])
 	l <- c()
@@ -783,8 +1077,16 @@ shplines <- function(filename="./shp/2021池塘line-4",id="ID_1"){
 	return(l)
 }
 
+#' Title
+#'
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
 shppoints <- function(filename="./shp/2021池塘line-4-points"){
-	d <- read.shapefile(filename)
+	d <- shapefiles::read.shapefile(filename)
 	dbf<-d$dbf$dbf
 	xy<-d$shp$shp[,c(2,3)]
 	return(data.frame(xy,dbf))
