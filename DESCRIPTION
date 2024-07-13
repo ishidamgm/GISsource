@@ -1,7 +1,7 @@
 Package: GISsource
 Type: Package
 Title: GIS functions for Japanese rectangular coordinate systems and  Kashmir3D files, and so on.
-Version: 0.1.0
+Version: 0.1.20240713
 Author: ISHIDA Megumi
 Maintainer: The package maintainer <ishidam@sanchikanri.com>
 Description: GIS functions for Japanese rectangular coordinate systems and  Kashmir3D files, and so on.
@@ -9,5 +9,8 @@ License: GPL(>=2)
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    shapefiles
+    shapefiles,
+    sf,
+    raster,
+    rgl
 RoxygenNote: 7.3.1

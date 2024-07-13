@@ -22,7 +22,6 @@ dir(.dir)
 (rng<-wpt(paste0(.dir,"/演習林範囲.wpt")))
 gaishu<-trk(paste0(.dir,"/演習林外周.trk" ))
 plot(gaishu[[1]],type="l")
-plot()
 XY<-trk(paste0(.dir,"/演習林林班.trk"))
 sapply(XY,lines)
 

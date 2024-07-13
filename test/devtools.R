@@ -2,7 +2,7 @@
 library(devtools)
 library(GISsource)
 help(package="GISsource")
-
+data(package="GISsource")
 
 # copy.files ####
 #'  .dir<-system.file("extdata",package="GISsource")
