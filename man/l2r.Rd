@@ -9,9 +9,15 @@ l2r(xaxis, yaxis, px00, py00)
 \arguments{
 \item{py00}{}
 }
-\value{
-
-}
 \description{
 Title
+}
+\examples{
+
+
+xaxis <-seq(0,21,.1) ;yaxis <-seq(0,21,.1)
+px00<-c(1,10,21,10,1) ;  py00<-c(10,20,10,1,10)
+px00<-c(1,10) ;  py00<-c(10,20)
+r<-l2r(xaxis,yaxis,px00,py00)
+image(r)
 }

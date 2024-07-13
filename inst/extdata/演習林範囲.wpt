@@ -1,0 +1,14 @@
+H  SOFTWARE NAME & VERSION
+I  PCX5 2.09
+
+H  COORDINATE SYSTEM
+U  LAT LON DEG
+
+H  R DATUM                IDX DA            DF            DX            DY            DZ
+M  G WGS 84               121 +0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+
+H êVãK
+
+H  IDNT   LATITUDE    LONGITUDE    DATE      TIME     ALT  DESCRIPTION
+W  _      N35.9777639 E137.2361806 23-JUN-06 13:13:26  1058 right_bottom    
+W  _      N36.0182972 E137.2038056 23-JUN-06 13:13:26  1058 left_top     

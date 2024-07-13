@@ -2,16 +2,31 @@
 % Please edit documentation in R/GISsource.r
 \name{RotateXY}
 \alias{RotateXY}
-\title{Title}
+\title{rotate of coordinates}
 \usage{
 RotateXY(XX, YY, x00, y00, deg)
 }
 \arguments{
-\item{deg}{}
+\item{XX}{original x coordinates}
+
+\item{YY}{original y coordinates}
+
+\item{x00}{x coordinate of a rotation center point}
+
+\item{y00}{y coordinate of a rotation center point}
+
+\item{deg}{rotation angle}
 }
 \value{
-
+rotation x coordinates
 }
 \description{
-Title
+rotate of coordinates
+}
+\examples{
+XX<-c(0,1,2,1,0);YY<-c(1,2,1,0,1);x00<-1;y00<-1;deg<-45
+xy<- RotateXY(XX,YY,x00,y00,deg)
+plot(XX,YY,type="b",xlim=c(0,2),ylim=c(0,2))
+lines(xy,type="b",col="red")
+points(x00,y00,col="red")
 }

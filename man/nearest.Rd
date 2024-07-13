@@ -2,16 +2,25 @@
 % Please edit documentation in R/GISsource.r
 \name{nearest}
 \alias{nearest}
-\title{Title}
+\title{Return reference number of vector with the nearest value to query value}
 \usage{
-nearest(list, q)
+nearest(v, q)
 }
 \arguments{
-\item{q}{}
+\item{q}{query value}
+
+\item{list}{vector data}
 }
 \value{
-
+reference number of vector
 }
 \description{
-Title
+Return reference number of vector with the nearest value to query value
+}
+\examples{
+v<-1:10
+q<-5.2
+v[nearest(v,q)]
+v[5]<-5.2;v[6]<-5.2
+v[nearest(v,q)]
 }

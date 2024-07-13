@@ -2,16 +2,23 @@
 % Please edit documentation in R/GISsource.r
 \name{ll2xy}
 \alias{ll2xy}
-\title{Title}
+\title{convert to latitude and longitude of WGS84 fron X, Y of JGD (Japanese Rectangular coordinates)}
 \usage{
 ll2xy(lat, lon, lat00 = "36.00000", lon00 = "137.100000")
 }
 \arguments{
-\item{lon00}{}
-}
-\value{
+\item{lat}{vector of latitude}
 
+\item{lon}{vector of longitude}
+
+\item{lat00}{original point of latitude for Japanese Rectangular coordinates system}
+
+\item{lon00}{original point of longitude for Japanese Rectangular coordinates system}
 }
 \description{
-Title
+convert to latitude and longitude of WGS84 fron X, Y of JGD (Japanese Rectangular coordinates)
+}
+\examples{
+ll2xy(36.5*degree,137.1*degree)
+
 }

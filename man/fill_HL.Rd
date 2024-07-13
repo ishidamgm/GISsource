@@ -2,16 +2,13 @@
 % Please edit documentation in R/GISsource.r
 \name{fill_HL}
 \alias{fill_HL}
-\title{Title}
+\title{fill}
 \usage{
 fill_HL(xnn, ynn, m, cl, cl00)
 }
 \arguments{
 \item{cl00}{}
 }
-\value{
-
-}
 \description{
-Title
+fill
 }

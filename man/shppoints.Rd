@@ -9,9 +9,6 @@ shppoints(filename = "./shp/2021池塘line-4-points")
 \arguments{
 \item{filename}{}
 }
-\value{
-
-}
 \description{
 Title
 }

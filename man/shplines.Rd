@@ -9,9 +9,6 @@ shplines(filename = "./shp/2021池塘line-4", id = "ID_1")
 \arguments{
 \item{id}{}
 }
-\value{
-
-}
 \description{
 Title
 }

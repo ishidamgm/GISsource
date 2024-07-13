@@ -1,18 +1,13 @@
-######		GIS_source.r@@@@@@@2008-2012@Ishida Megumi (Gifu univ.)
-######	 å‚È“à—e
-######	@GIS‚ÉŠÖ‚·‚éŠî‘bŠÖ”
-######	@ˆÜ“xEŒo“x¨•½–Ê’¼ŠpÀ•WŒn•ÏŠ·
-######	@ƒJƒVƒ~[ƒ‹3D‚Ìƒgƒ‰ƒbƒNƒf[ƒ^i.trkjAƒEƒFƒCƒ|ƒCƒ“ƒgƒf[ƒ^i.wptj‚Ì•½–Ê’¼ŠpÀ•WŒn•ÏŠ·
+######		GIS_source.rã€€ã€€ã€€ã€€ã€€ã€€ã€€2008-2012ã€€Ishida Megumi (Gifu univ.)
+######	 ä¸»ãªå†…å®¹
+######	ã€€GISã«é–¢ã™ã‚‹åŸºç¤é–¢æ•°
+######	ã€€ç·¯åº¦ãƒ»çµŒåº¦â†’å¹³é¢ç›´è§’åº§æ¨™ç³»å¤‰æ›
+######	ã€€ã‚«ã‚·ãƒŸãƒ¼ãƒ«3Dã®ãƒˆãƒ©ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ï¼ˆ.trkï¼‰ã€ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ï¼ˆ.wptï¼‰ã®å¹³é¢ç›´è§’åº§æ¨™ç³»å¤‰æ›
 
 
-
-
-
-### •Ï”’è‹`
+### å¤‰æ•°å®šç¾©
 
 degree=pi/180
-
-
 
 
 #' calculate polygonal area
@@ -30,7 +25,7 @@ area<-function(xl,yl){
       sum((xl2-xl)*(yl+yl2)/2)
 }
 
-#### “_ŠÔ‹——£
+#### ç‚¹é–“è·é›¢
 
 #' disd
 #'
@@ -47,31 +42,90 @@ distance<-function(xl,yl){
       sqrt((xl2-xl)^2+(yl2-yl)^2)
 				}
 
-### ÅŠñ‚è“_‚Ì’Šo@list<-ŒŸõæƒxƒNƒgƒ‹Eƒf[ƒ^@q<-–â‚¢‡‚í‚¹Eƒf[ƒ^
+### æœ€å¯„ã‚Šç‚¹ã®æŠ½å‡ºã€€list<-æ¤œç´¢å…ˆãƒ™ã‚¯ãƒˆãƒ«ãƒ»ãƒ‡ãƒ¼ã‚¿ã€€q<-å•ã„åˆã‚ã›ãƒ»ãƒ‡ãƒ¼ã‚¿
+#' Title
+#'
+#' @param list
+#' @param q
+#'
+#' @return
+#' @export
+#'
+#' @examples
 nearest <-  function(list,q){which(abs(list-q)==min(abs(list-q)))}[1]
 
-##@ƒJƒVƒ~[ƒ‹trkƒtƒ@ƒCƒ‹‚Ìs‚©‚çˆÜ“xAŒo“xƒf[ƒ^æ“¾@(ddd.dddddd Œ`®‚Å•Û‘¶‚³‚ê‚½‚à‚Ì)
+##ã€€ã‚«ã‚·ãƒŸãƒ¼ãƒ«trkãƒ•ã‚¡ã‚¤ãƒ«ã®è¡Œã‹ã‚‰ç·¯åº¦ã€çµŒåº¦ãƒ‡ãƒ¼ã‚¿å–å¾—ã€€(ddd.dddddd å½¢å¼ã§ä¿å­˜ã•ã‚ŒãŸã‚‚ã®)
+#' Title
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
 lonlat <- function(s) {as.numeric(c(substr(s,17,27),substr(s,5,14)))}
 
-##@ƒJƒVƒ~[ƒ‹wptƒtƒ@ƒCƒ‹‚Ìs‚©‚çˆÜ“xAŒo“xƒf[ƒ^æ“¾@(ddd.dddddd Œ`®‚Å•Û‘¶‚³‚ê‚½‚à‚Ì)
+##ã€€ã‚«ã‚·ãƒŸãƒ¼ãƒ«wptãƒ•ã‚¡ã‚¤ãƒ«ã®è¡Œã‹ã‚‰ç·¯åº¦ã€çµŒåº¦ãƒ‡ãƒ¼ã‚¿å–å¾—ã€€(ddd.dddddd å½¢å¼ã§ä¿å­˜ã•ã‚ŒãŸã‚‚ã®)
+#' Title
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
 lonlatWPT <- function(s) {as.numeric(c(substr(s,24,34),substr(s,12,21)))}
 
-##@ƒJƒVƒ~[ƒ‹wptƒtƒ@ƒCƒ‹‚Ìs‚©‚çƒ‰ƒxƒ‹ƒf[ƒ^æ“¾@
+##ã€€ã‚«ã‚·ãƒŸãƒ¼ãƒ«wptãƒ•ã‚¡ã‚¤ãƒ«ã®è¡Œã‹ã‚‰ãƒ©ãƒ™ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—ã€€
+#' Title
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
 textWPT <- function(s) {sub(" .* ","",substr(s,61,100))}
 
-##### trkll@ƒJƒVƒ~[ƒ‹‚Ìƒgƒ‰ƒbƒNsƒf[ƒ^‚©‚çˆÜ“xEŒo“x‚ğ’Šo‚·‚éŠÖ”
+##### trkllã€€ã‚«ã‚·ãƒŸãƒ¼ãƒ«ã®ãƒˆãƒ©ãƒƒã‚¯è¡Œãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ç·¯åº¦ãƒ»çµŒåº¦ã‚’æŠ½å‡ºã™ã‚‹é–¢æ•°
+#' Title
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
 trkll<-function(s){
 lon=as.numeric(substr(s,17,27));lat=as.numeric(substr(s,5,14))
 c(lon,lat)
 }
 
-##### trkXY@ƒJƒVƒ~[ƒ‹‚Ìƒgƒ‰ƒbƒNsƒf[ƒ^‚©‚çXY‚ğ’Šo‚·‚éŠÖ”
+##### trkXYã€€ã‚«ã‚·ãƒŸãƒ¼ãƒ«ã®ãƒˆãƒ©ãƒƒã‚¯è¡Œãƒ‡ãƒ¼ã‚¿ã‹ã‚‰XYã‚’æŠ½å‡ºã™ã‚‹é–¢æ•°
+#' Title
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
 trkXY<-function(s){
 lon=as.numeric(substr(s,17,27));lat=as.numeric(substr(s,5,14))
 ll2xy(lat*degree,lon*degree) ###+GPSdxy
 }
 
-##### trkXYn@ƒJƒVƒ~[ƒ‹‚Ìn”Ô–Ú‚Ìƒgƒ‰ƒbƒNƒf[ƒ^‚©‚çXY‚ğ’Šo‚·‚éŠÖ”
+##### trkXYnã€€ã‚«ã‚·ãƒŸãƒ¼ãƒ«ã®nç•ªç›®ã®ãƒˆãƒ©ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰XYã‚’æŠ½å‡ºã™ã‚‹é–¢æ•°
+#' Title
+#'
+#' @param dir
+#' @param filename
+#' @param ii
+#'
+#' @return
+#' @export
+#'
+#' @examples
 trkXYn<-function(dir,filename,ii){
 	##dir=GISdir;filename="BeltTransect.trk"
  	l<-readLines(paste(dir,"/",filename,sep=""))
@@ -88,9 +142,17 @@ trkXYn<-function(dir,filename,ii){
 	(TRKy<-d[1:(n/2)])
 	(d<-matrix(c(TRKx,TRKy),ncol=2))
 				}
-##### trkXYall@ƒJƒVƒ~[ƒ‹‚Ì‘Sƒgƒ‰ƒbƒNƒf[ƒ^‚©‚çƒŠƒXƒgŒ`®‚ÅXY‚ğ’Šo‚·‚éŠÖ”
+##### trkXYallã€€
+#' ã‚«ã‚·ãƒŸãƒ¼ãƒ«ã®å…¨ãƒˆãƒ©ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒªã‚¹ãƒˆå½¢å¼ã§XYã‚’æŠ½å‡ºã™ã‚‹é–¢æ•°
+#'
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
 trk<-function(filename){
-	### filename="../gps/ˆÊR‰‰K—Ñ—Ñ“¹.trk"
+	### filename="../gps/ä½å±±æ¼”ç¿’æ—æ—é“.trk"
 
        l<-readLines(filename)
  	dn=length(l)
@@ -114,9 +176,17 @@ trk<-function(filename){
       return(z)
 				}
 
-##### wptXY@ƒJƒVƒ~[ƒ‹‚ÌƒEƒFƒCƒ|ƒCƒ“ƒgEƒf[ƒ^‚©‚çXYAƒ‰ƒxƒ‹‚ğ’Šo‚·‚éŠÖ”
+##### wptXYã€€ã‚«ã‚·ãƒŸãƒ¼ãƒ«ã®ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆãƒ»ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰XYã€ãƒ©ãƒ™ãƒ«ã‚’æŠ½å‡ºã™ã‚‹é–¢æ•°
+#' Title
+#'
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
  wpt<-function(filename){
-	##filename<-"../gps/‰‰K—Ñ”ÍˆÍ2.wpt"
+	##filename<-"../gps/æ¼”ç¿’æ—ç¯„å›²2.wpt"
  	l<-readLines(filename)
 	mm<-substring(l,1,1)=="W"
 	s<-lonlatWPT(l[mm])
@@ -149,6 +219,15 @@ trk<-function(filename){
 ####################################
 ####################################
 
+#' Title
+#'
+#' @param JGD7dv
+#' @param JGD7dh
+#'
+#' @return
+#' @export
+#'
+#' @examples
 XY7Code <-function(JGD7dv,JGD7dh){
 (JGD7code<-paste(
 LETTERS[11+floor(-JGD7dv/30000)],
@@ -169,6 +248,15 @@ list(JGD7code,dn,dv,dh)
 
 
 
+#' Title
+#'
+#' @param JGD7dv
+#' @param JGD7dh
+#'
+#' @return
+#' @export
+#'
+#' @examples
 AltXY7<-function(JGD7dv,JGD7dh){
 fn<-XY7Code(JGD7dv,JGD7dh)[[1]]
 dn<-XY7Code(JGD7dv,JGD7dh)[[2]]
@@ -180,13 +268,13 @@ d[dn,3]
 
 
 ######
-###### @‘“y’n—‰@@•½–Ê’¼ŠpÀ•W•ÏŠ· i‘æ7Œnj
-###### @@http://www.gsi.go.jp/LAW/heimencho.html
+###### ã€€å›½åœŸåœ°ç†é™¢ã€€å¹³é¢ç›´è§’åº§æ¨™å¤‰æ› ï¼ˆç¬¬7ç³»ï¼‰
+###### ã€€ã€€http://www.gsi.go.jp/LAW/heimencho.html
 ######     http://vldb.gsi.go.jp/sokuchi/surveycalc/algorithm/
 ######     http://vldb.gsi.go.jp/sokuchi/surveycalc/bl2xyf.html
 ######     TKY2JGD
-######@ll2xy   ˆÜ“xŒo“xiwgs84j     ¨@‘æ7Œn•½–Ê’¼ŠpÀ•W
-######@ll2xy   ‘æ7Œn•½–Ê’¼ŠpÀ•W•ÏŠ· ¨@ˆÜ“xŒo“xiwgs84j
+######ã€€ll2xy   ç·¯åº¦çµŒåº¦ï¼ˆwgs84ï¼‰     â†’ã€€ç¬¬7ç³»å¹³é¢ç›´è§’åº§æ¨™
+######ã€€ll2xy   ç¬¬7ç³»å¹³é¢ç›´è§’åº§æ¨™å¤‰æ› â†’ã€€ç·¯åº¦çµŒåº¦ï¼ˆwgs84ï¼‰
 
 
 
@@ -200,13 +288,36 @@ e2 = sqrt((e1^2)/(1 - e1^2));
 
 radian <- function(degree) { degree/180*pi }
 
-######@Šp“x•\Œ»@•¶š<->”’l
+######ã€€è§’åº¦è¡¨ç¾ã€€æ–‡å­—<->æ•°å€¤
+#' Title
+#'
+#' @param d
+#'
+#' @return
+#' @export
+#'
+#' @examples
 s2n<-function(d){
    i=nchar(unlist(strsplit(d,"\\."))[1])+1;
   as.numeric(substr(d,1,i-1))+as.numeric(substr(d,i+1,i+2))/60+
   (as.numeric(substr(d,i+3,i+4))+as.numeric(paste(".",substr(d,i+5,20),sep="")))/3600
    }
 
+
+#' Title
+#'
+#' @param d
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' d=137.13416566
+#' n2s(d)
+#' s2n(n2s(d))
+#' #########  ç¬¬7ç³»åŸç‚¹
+#' lat0 = s2n("36.00000")*degree;
+#' lon0 = s2n("137.100000")*degree;
 
 n2s<-function(d)
 {s1 = floor(d);
@@ -216,33 +327,28 @@ n2s<-function(d)
     s3 = substring(10000 + 10*d3, 3, 5);
        paste(s1,".", s2 ,s3,sep="")}
 
-######### “®ìƒ`ƒFƒbƒN
-d=137.13416566
-n2s(d)
-s2n(n2s(d))
-
-#########  ‘æ7ŒnŒ´“_
-lat0 = s2n("36.00000")*degree;
-lon0 = s2n("137.100000")*degree;
-d="137.100000"
-d=as.numeric(d);floor(d)+(100*d-floor(100*d))/60+(d*10000-floor(d*10000))/3600
-floor(d)
-100*(d-floor(d))/60
-+100*(d*100-floor(d*100))/3600
 
 
-100*(d-floor(d))/60
 
-d=1.23456
-(d-floor(d))
 
+
+#' Title
+#'
+#' @param lat
+#' @param lat00
+#' @param lon00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 S<-function(lat,lat00="36.00000",lon00="137.100000"){
-@##### lat00Elon00 À•WŒnŒ´“_‚ÌˆÜ“xEŒo“x@yƒfƒtƒHƒ‹ƒg‚Í‘æ7Œnz
-@#####@http://www.gsi.go.jp/LAW/heimencho.html
-@#####@http://vldb.gsi.go.jp/sokuchi/surveycalc/bl2xyf.html
-@@lat0 = s2n(lat00)*degree;@lon0 = s2n(lon00)*degree;
+ã€€##### lat00ãƒ»lon00 åº§æ¨™ç³»åŸç‚¹ã®ç·¯åº¦ãƒ»çµŒåº¦ã€€ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ç¬¬7ç³»ã€‘
+ã€€#####ã€€http://www.gsi.go.jp/LAW/heimencho.html
+ã€€#####ã€€http://vldb.gsi.go.jp/sokuchi/surveycalc/bl2xyf.html
+ã€€ã€€lat0 = s2n(lat00)*degree;ã€€lon0 = s2n(lon00)*degree;
 
-    ########### 5.ˆÜ“x‚ğ—^‚¦‚ÄÔ“¹‚©‚ç‚ÌqŒßüŒÊ’·‚ğ‹‚ß‚éŒvZ###############
+    ########### 5.ç·¯åº¦ã‚’ä¸ãˆã¦èµ¤é“ã‹ã‚‰ã®å­åˆç·šå¼§é•·ã‚’æ±‚ã‚ã‚‹è¨ˆç®—###############
 
     f = 1/298.257222101;
     e1 = sqrt(2*f - f^2);
@@ -282,10 +388,21 @@ S<-function(lat,lat00="36.00000",lon00="137.100000"){
 
 
 
+#' Title
+#'
+#' @param x
+#' @param y
+#' @param lat00
+#' @param lon00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 xy2ll<-function(x,y,lat00="36.00000",lon00="137.100000"){
-@##### lat00Elon00 À•WŒnŒ´“_‚ÌˆÜ“xEŒo“x@yƒfƒtƒHƒ‹ƒg‚Í‘æ7Œnz
-@#####@http://www.gsi.go.jp/LAW/heimencho.html
-@@lat0 = s2n(lat00)*degree;@lon0 = s2n(lon00)*degree;
+ã€€##### lat00ãƒ»lon00 åº§æ¨™ç³»åŸç‚¹ã®ç·¯åº¦ãƒ»çµŒåº¦ã€€ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ç¬¬7ç³»ã€‘
+ã€€#####ã€€http://www.gsi.go.jp/LAW/heimencho.html
+ã€€ã€€lat0 = s2n(lat00)*degree;ã€€lon0 = s2n(lon00)*degree;
 
     M = S(lat0) + y/m0;
     lat1 =
@@ -295,14 +412,14 @@ xy2ll<-function(x,y,lat00="36.00000",lon00="137.100000"){
     N1 = a/(sqrt(1 - e1^2*sin(lat1)^2));
       eta12 = e2^2*cos(lat1)^2;
       t1 = tan(lat1);
-      ##### 1 - 1 ˆÜ“x ######
+      ##### 1 - 1 ç·¯åº¦ ######
       lat = lat1 - 1/2*1/(N1^2)*t1*(1 + eta12)*(x/m0)^2+1/24*1/N1^4*
             t1*(5 + 3*t1^2 + 6*t1^2 - 6*t1^2*eta12 - 3*eta12^2
             - 9*t1^2*eta12^2)*(x/m0)^4-1/720*1/N1^6*t1*(61 + 90*t1^2
             + 45*t1^2 + 107*eta12 - 162*t1^2*eta12)*(x/m0)^6+
             1/40320*1/N1^8*t1*(1385 + 3633*t1^2 + 4095*t1^4 +
             1575*t1^6)*(x/m0)^8;
-      ###### 1 - 2 Œo“x #######
+      ###### 1 - 2 çµŒåº¦ #######
      dlon = 1/(N1*cos(lat1))*(x/m0)
         - 1/6*1/(N1^3*cos(lat1))*(1 + 2*t1^2 + eta12)*(x/m0)^3+
         1/120*1/(N1^5*cos(lat1))*(5 + 28*t1^2
@@ -325,16 +442,27 @@ xy2ll<-function(x,y,lat00="36.00000",lon00="137.100000"){
 
 
 
+#' Title
+#'
+#' @param lat
+#' @param lon
+#' @param lat00
+#' @param lon00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 ll2xy<-function (lat,lon,lat00="36.00000",lon00="137.100000"){
-@##### lat00Elon00 À•WŒnŒ´“_‚ÌˆÜ“xEŒo“x@yƒfƒtƒHƒ‹ƒg‚Í‘æ7Œnz
-@#####@http://www.gsi.go.jp/LAW/heimencho.html
-@@lat0 = s2n(lat00)*degree;@lon0 = s2n(lon00)*degree;
+ã€€##### lat00ãƒ»lon00 åº§æ¨™ç³»åŸç‚¹ã®ç·¯åº¦ãƒ»çµŒåº¦ã€€ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ç¬¬7ç³»ã€‘
+ã€€#####ã€€http://www.gsi.go.jp/LAW/heimencho.html
+ã€€ã€€lat0 = s2n(lat00)*degree;ã€€lon0 = s2n(lon00)*degree;
 
     dlon = lon - lon0;
     eta2 = e2*cos(lon)^2 ;
     t = tan(lat);
     N0 = a/sqrt(1 - e1^2*sin(lat)^2);
-    ### 2 - (1)xÀ•W ####
+    ### 2 - (1)xåº§æ¨™ ####
 
     x = ((S(lat) - S(lat0)) + 1/2*N0*cos(lat)^2*t*dlon^2 +
             1/24*N0*cos(lat)^4*t*(5 - t^2 + 9*eta2 + 4*eta2^2)*dlon^4
@@ -344,7 +472,7 @@ ll2xy<-function (lat,lon,lat00="36.00000",lon00="137.100000"){
             -
             1/40320*N0*cos(lat)^8*t*(-1385 + 3111*t^2 - 543*t^t + t^6)*
               dlon^8)*m0;
-    #### 2 - (2)yÀ•W ####
+    #### 2 - (2)yåº§æ¨™ ####
     y = (N0*cos(lat)*dlon- 1/6*N0*cos(lat)^3*(-1 + t^2 - eta2)*dlon^3
             - 1/120*N0*cos(lat)^5*(-5 + 18*t^2 - t^4 - 14*eta2 +
             58*t^2*eta2)*dlon^5- 1/5040*N0*cos(lat)^7*(-61 + 479*t^2
@@ -355,6 +483,17 @@ ll2xy<-function (lat,lon,lat00="36.00000",lon00="137.100000"){
 ###  R image ->   Grass ASCII raster grid
 
 
+#' Title
+#'
+#' @param we
+#' @param sn
+#' @param m
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
 R2Grass_AsciiRaster<-function(we,sn,m,filename){
 	## we<-x;sn<-y;m<-dem2m
 	rows=length(sn);cols=length(we)
@@ -383,6 +522,14 @@ R2Grass_AsciiRaster<-function(we,sn,m,filename){
 
 ### Grass ASCII raster grid -> R image
 
+#' Title
+#'
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
 Grass2R_AsciiRaster<-function(filename){
 
 	d0<-readLines(filename)    ### ex. filename<-"ascii-grid-dem.txt"
@@ -406,9 +553,21 @@ Grass2R_AsciiRaster<-function(filename){
 
 
 #######################################################
-###@“h‚è‚Â‚Ô‚µŠÖ”
+###ã€€å¡—ã‚Šã¤ã¶ã—é–¢æ•°
 #######################################################
 
+#' Title
+#'
+#' @param xnn
+#' @param ynn
+#' @param m
+#' @param cl
+#' @param cl00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 fill_HL<-function(xnn,ynn,m,cl,cl00){
 	ynn1<-range(ynn)[1]; ynn2<-range(ynn)[2];
 	x12y<-c()
@@ -444,31 +603,31 @@ fill_L<-function(xnn,ynn,m,cl,cl00){
 						}
 
 fill2<-function(xnn, ynn,m,cl,cl00)
-{	########@“h‚è‚Â‚Ô‚µƒvƒƒOƒ‰ƒ€@ƒxƒNƒ^[ƒ|ƒŠƒSƒ“¨ƒ‰ƒXƒ^[
-	######## @fill_L@(line method) ‚É‚æ‚Á‚Ä“h‚èc‚µ‚½•”•ª‚ğ@fill Ä‹AŠÖ”‚É‚æ‚Á‚Ä“h‚è‚Â‚Ô‚µ
-	######## @ƒ‰ƒCƒ“–@‚ÆüˆÍ’Tõ–@(Ä‹AŠÖ”)‚É‚æ‚é@ƒXƒ^ƒbƒN•s‘«‘Îô
-	########@@ƒ|ƒŠƒSƒ“ƒf[ƒ^@s@xnn @—ñ@ynn @@ƒ}ƒgƒŠƒNƒXƒf[ƒ^@m@“h‚è‚Â‚Ô‚·F@cl@“h‚è‚Â‚Ô‚³‚ê‚éF@cl00
+{	########ã€€å¡—ã‚Šã¤ã¶ã—ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã€€ãƒ™ã‚¯ã‚¿ãƒ¼ãƒãƒªã‚´ãƒ³â†’ãƒ©ã‚¹ã‚¿ãƒ¼
+	######## ã€€fill_Lã€€(line method) ã«ã‚ˆã£ã¦å¡—ã‚Šæ®‹ã—ãŸéƒ¨åˆ†ã‚’ã€€fill å†å¸°é–¢æ•°ã«ã‚ˆã£ã¦å¡—ã‚Šã¤ã¶ã—
+	######## ã€€ãƒ©ã‚¤ãƒ³æ³•ã¨å‘¨å›²æ¢ç´¢æ³•(å†å¸°é–¢æ•°)ã«ã‚ˆã‚‹ã€€ã‚¹ã‚¿ãƒƒã‚¯ä¸è¶³å¯¾ç­–
+	########ã€€ã€€ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€è¡Œã€€xnn ã€€åˆ—ã€€ynn ã€€ã€€ãƒãƒˆãƒªã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã€€mã€€å¡—ã‚Šã¤ã¶ã™è‰²ã€€clã€€å¡—ã‚Šã¤ã¶ã•ã‚Œã‚‹è‰²ã€€cl00
 
 	fill<-function(x,y,cl,cl00) {
-		 ## cl00<-0;cl<-1    			@@ ####@cl00 “h‚è‚Â‚Ô‚³‚ê‚é’l
-   		 m[x,y]<<-cl; @@@@ ####@“h‚è‚Â‚Ô‚·’l
+		 ## cl00<-0;cl<-1    			ã€€ã€€ ####ã€€cl00 å¡—ã‚Šã¤ã¶ã•ã‚Œã‚‹å€¤
+   		 m[x,y]<<-cl; ã€€ã€€ã€€ã€€ ####ã€€å¡—ã‚Šã¤ã¶ã™å€¤
 		if (m[x,y-1]==cl00) fill(x,y-1,cl,cl00)
 		if (m[x+1,y]==cl00) fill(x+1,y,cl,cl00)
 		if (m[x,y+1]==cl00) fill(x,y+1,cl,cl00)
 		if (m[x-1,y]==cl00) fill(x-1,y,cl,cl00)
 				}
 
-	m<-fill_L(xnn,ynn,m,999,cl00)			######@@ƒ‰ƒCƒ“–@‚Å“h‚è‚Â‚Ô‚µ@999‚Å‰¼“h‚è
+	m<-fill_L(xnn,ynn,m,999,cl00)			######ã€€ã€€ãƒ©ã‚¤ãƒ³æ³•ã§å¡—ã‚Šã¤ã¶ã—ã€€999ã§ä»®å¡—ã‚Š
 
-	m[cbind(xnn,ynn)]<-cl				#####@‹«ŠEƒZƒ‹‚ÌÄ•`‰æ@xnn@ynn
-	ij<-which(m==999,arr.ind =TRUE)		####@ƒZƒ‹ŒŸo
+	m[cbind(xnn,ynn)]<-cl				#####ã€€å¢ƒç•Œã‚»ãƒ«ã®å†æç”»ã€€xnnã€€ynn
+	ij<-which(m==999,arr.ind =TRUE)		####ã€€ã‚»ãƒ«æ¤œå‡º
 	rn<-ij[,1];	cn<-ij[,2]
 
-								######## ‘ÎÛƒZƒ‹‚Ìü•ÓƒJƒ‰[
+								######## å¯¾è±¡ã‚»ãƒ«ã®å‘¨è¾ºã‚«ãƒ©ãƒ¼
 	c4<-cbind(m[cbind(rn,cn-1)],m[cbind(rn+1,cn)],m[cbind(rn,cn+1)],m[cbind(rn-1,cn)])
 	rcc4<-data.frame(rn,cn,y_1=c4[,1],x1=c4[,2],y1=c4[,3],x_1=c4[,4])
 
-								####@@“h‚è‚Â‚Ô‚µ‘¹‚Ë‚ÌƒZƒ‹ err_cell ‚ÌŒŸo
+								####ã€€ã€€å¡—ã‚Šã¤ã¶ã—æã­ã®ã‚»ãƒ« err_cell ã®æ¤œå‡º
 	ij2<-which(c4==0,arr.ind =TRUE)
 	i<-ij2[,1];rn2<-rn[i];cn2<-cn[i]; ## rcc4[i,]
 	j<-ij2[,2]; drn<-j; dcn<-j
@@ -477,20 +636,20 @@ fill2<-function(xnn, ynn,m,cl,cl00)
 	err_cell<-cbind(rn2+drn,cn2+dcn)
 
 	while(nrow(err_cell)!=0){
-		fill(err_cell[1,1],err_cell[1,2],999,0)	###  Ä‹AŠÖ”‚É‚æ‚é“h‚è‚Â‚Ô‚µ
-		err_cell<-err_cell[m[err_cell]==0,]		###@“h‚è‚Â‚Ô‚µ‘¹‚Ë‚ÌƒZƒ‹ err_cell ‚ÌÄ\’z
+		fill(err_cell[1,1],err_cell[1,2],999,0)	###  å†å¸°é–¢æ•°ã«ã‚ˆã‚‹å¡—ã‚Šã¤ã¶ã—
+		err_cell<-err_cell[m[err_cell]==0,]		###ã€€å¡—ã‚Šã¤ã¶ã—æã­ã®ã‚»ãƒ« err_cell ã®å†æ§‹ç¯‰
 					}
 
-	m[m==999]<-cl						### 999@->@cl ‚Ì‘‚«–ß‚µ
+	m[m==999]<-cl						### 999ã€€->ã€€cl ã®æ›¸ãæˆ»ã—
 	return(m)
 }
 
 
 
 fill_<-function(x,y,m,cl,cl00){
-	## –¢Š®¬@‘Ü¬˜H‚Å’â~‚µ‚Ä‚µ‚Ü‚¤@
+	## æœªå®Œæˆã€€è¢‹å°è·¯ã§åœæ­¢ã—ã¦ã—ã¾ã†ã€€
 	## x<-p1x_n;y<-p1y_n
-    m[x,y]<-cl; 					####@cl00 “h‚è‚Â‚Ô‚³‚ê‚é’l  cl@“h‚è‚Â‚Ô‚·’l
+    m[x,y]<-cl; 					####ã€€cl00 å¡—ã‚Šã¤ã¶ã•ã‚Œã‚‹å€¤  clã€€å¡—ã‚Šã¤ã¶ã™å€¤
     repeat{
 	ifelse(m[x,y-1]==cl00,{m[x,y-1]<-cl;y<-y-1},
 	 ifelse(m[x+1,y]==cl00,{m[x+1,y]<-cl;x<-x+1},
@@ -504,22 +663,38 @@ fill_<-function(x,y,m,cl,cl00){
 #######################################################
 #######################################################
 
+#' Title
+#'
+#' @param px00
+#' @param py00
+#' @param p1x
+#' @param p1y
+#' @param xaxis
+#' @param yaxis
+#' @param m
+#' @param cl
+#' @param cl00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 Polygon2Raster<-function(px00,py00,p1x,p1y,xaxis,yaxis,m,cl,cl00){
 
                         ###px00,py00,p1x,p1y,xaxis,yaxis,m,cl,cl00
 	##############################################
-	## ƒ|ƒŠƒSƒ““à‚ÌƒƒbƒVƒ…‚Ìæ“¾@Ä‹A“I•û–@
-	## px00,py00 ƒ|ƒŠƒSƒ“ƒf[ƒ^@iƒxƒNƒgƒ‹j
-	## px1, py1 ƒ|ƒŠƒSƒ““à•”“_@
-	## xaxis,yaxis,m@ƒCƒ[ƒWEƒ}ƒgƒŠƒNƒX@DEM“™
-	##@cl00 “h‚è‚Â‚Ô‚³‚ê‚é’l
-	##@“h‚è‚Â‚Ô‚·’l
+	## ãƒãƒªã‚´ãƒ³å†…ã®ãƒ¡ãƒƒã‚·ãƒ¥ã®å–å¾—ã€€å†å¸°çš„æ–¹æ³•
+	## px00,py00 ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆãƒ™ã‚¯ãƒˆãƒ«ï¼‰
+	## px1, py1 ãƒãƒªã‚´ãƒ³å†…éƒ¨ç‚¹ã€€
+	## xaxis,yaxis,mã€€ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ»ãƒãƒˆãƒªã‚¯ã‚¹ã€€DEMç­‰
+	##ã€€cl00 å¡—ã‚Šã¤ã¶ã•ã‚Œã‚‹å€¤
+	##ã€€å¡—ã‚Šã¤ã¶ã™å€¤
 	##############################################
 
 
 	px<-px00;py<-py00
 
-						### ‹ß—“_’uŠ·
+						### è¿‘ä¼¼ç‚¹ç½®æ›
 
 	for (i in 1:length(px)){
 			px[i]<-xaxis[nearest(xaxis,px00[i])]
@@ -527,7 +702,7 @@ Polygon2Raster<-function(px00,py00,p1x,p1y,xaxis,yaxis,m,cl,cl00){
 				}
 
 
-	n<-length(px)										### “_ƒf[ƒ^ŠÔ‚Ì•âŠÔ
+	n<-length(px)										### ç‚¹ãƒ‡ãƒ¼ã‚¿é–“ã®è£œé–“
 	xxx<-c();yyy<-c()
 
 	for (i in 1:(n-1)){
@@ -550,14 +725,14 @@ Polygon2Raster<-function(px00,py00,p1x,p1y,xaxis,yaxis,m,cl,cl00){
 				}
 
 
-											###@‹«ŠEü¨ƒ‰ƒXƒ^[
+											###ã€€å¢ƒç•Œç·šâ†’ãƒ©ã‚¹ã‚¿ãƒ¼
 
 xnn<-c();for (i in 1:length(xxx))xnn<-c(xnn,nearest(xaxis,xxx[i]))
 ynn<-c();for (i in 1:length(yyy))ynn<-c(ynn,nearest(yaxis,yyy[i]))
 m[cbind(xnn,ynn)]<-cl
 
-#####################@ƒ|ƒŠƒSƒ““à¨ƒ‰ƒXƒ^[
-@	p1x_n<-nearest(xaxis,p1x);p1y_n<-nearest(yaxis,p1y)
+#####################ã€€ãƒãƒªã‚´ãƒ³å†…â†’ãƒ©ã‚¹ã‚¿ãƒ¼
+ã€€	p1x_n<-nearest(xaxis,p1x);p1y_n<-nearest(yaxis,p1y)
 	m<-fill2(xnn,ynn,m,cl,cl00)
 ##################
 
@@ -567,6 +742,17 @@ m[cbind(xnn,ynn)]<-cl
 
 
 
+#' Title
+#'
+#' @param PolygonsList
+#' @param Points
+#' @param xaxis
+#' @param yaxis
+#'
+#' @return
+#' @export
+#'
+#' @examples
 PolygonsList2Raster<-function(PolygonsList,Points,xaxis,yaxis){
 	pl<-PolygonsList
 	p<-Points
@@ -584,7 +770,19 @@ PolygonsList2Raster<-function(PolygonsList,Points,xaxis,yaxis){
 					}
 
 ######################
-###### À•W‚Ì‰ñ“]
+###### åº§æ¨™ã®å›è»¢
+#' Title
+#'
+#' @param XX
+#' @param YY
+#' @param x00
+#' @param y00
+#' @param deg
+#'
+#' @return
+#' @export
+#'
+#' @examples
 RotateXY<-function(XX,YY,x00,y00,deg){
 ## XX<-c(0,2,1);YY<-c(0,0,2);x00<-0;y00<-0;deg<-45
 	dx=XX-x00; dy=YY-y00; dl=sqrt(dx^2+dy^2);
@@ -593,7 +791,15 @@ RotateXY<-function(XX,YY,x00,y00,deg){
 		}
 ######################
 
-### GIMP‚Åì¬‚µ‚½ƒpƒXƒtƒ@ƒCƒ‹‚ğ.svg‚ÅƒGƒNƒXƒ|[ƒg‚µÀ•Wƒf[ƒ^‚ğ’Šo‚·‚é
+### GIMPã§ä½œæˆã—ãŸãƒ‘ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’.svgã§ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã—åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’æŠ½å‡ºã™ã‚‹
+#' Title
+#'
+#' @param f
+#'
+#' @return
+#' @export
+#'
+#' @examples
 svgXY<-function(f){
 	l<-readLines(f)
 	ll<-strsplit(l,split=c(" "));ll<-unlist(ll)
@@ -626,17 +832,28 @@ for(ii in 1:length(lll))text(mean(xy[[ii]][,1]),mean(xy[[ii]][,2]),ii,cex=0.7,co
 #######################################
 			}
 
+#' Title
+#'
+#' @param px00
+#' @param py00
+#' @param xaxis
+#' @param yaxis
+#'
+#' @return
+#' @export
+#'
+#' @examples
 hokan<-function(px00,py00,xaxis,yaxis){
 
 	##############################################
-	## px,py ƒ‰ƒCƒ“ƒf[ƒ^@iƒxƒNƒgƒ‹j
-	## x,y@‘Î‰À•W
+	## px,py ãƒ©ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆãƒ™ã‚¯ãƒˆãƒ«ï¼‰
+	## x,yã€€å¯¾å¿œåº§æ¨™
 	##############################################
 
 
 	px<-px00;py<-py00
 
-						### ‹ß—“_’uŠ·
+						### è¿‘ä¼¼ç‚¹ç½®æ›
 
 	for (i in 1:length(px)){
 			px[i]<-xaxis[nearest(xaxis,px00[i])]
@@ -644,7 +861,7 @@ hokan<-function(px00,py00,xaxis,yaxis){
 				}
 
 
-	n<-length(px)			### “_ƒf[ƒ^ŠÔ‚Ì•âŠÔ
+	n<-length(px)			### ç‚¹ãƒ‡ãƒ¼ã‚¿é–“ã®è£œé–“
 	xxx<-c();yyy<-c()
 
 	for (i in 1:(n-1)){
@@ -666,24 +883,35 @@ hokan<-function(px00,py00,xaxis,yaxis){
 		xxx<-c(xxx,xx);yyy<-c(yyy,yy)
 				}
 
-@@@@@@@@@return(cbind(xxx,yyy))
+ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€return(cbind(xxx,yyy))
 			}
 
 
 
+#' Title
+#'
+#' @param xaxis
+#' @param yaxis
+#' @param px00
+#' @param py00
+#'
+#' @return
+#' @export
+#'
+#' @examples
 l2r<-function(xaxis,yaxis,px00,py00){
 
 	##############################################
-	## px,py ƒ‰ƒCƒ“ƒf[ƒ^@iƒxƒNƒgƒ‹j
-	## x,y@ƒCƒ[ƒWEÀ•W
+	## px,py ãƒ©ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆãƒ™ã‚¯ãƒˆãƒ«ï¼‰
+	## x,yã€€ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ»åº§æ¨™
 	##############################################
 	px<-px00;py<-py00
 	xy_<-hokan(px00,py00,xaxis,yaxis)
 	xxx<-xy_[,1]; yyy<-xy_[,2];
 
 
-											###@‹«ŠEü¨ƒ‰ƒXƒ^[
-	xn<-length(xaxis);yn<-length(yaxis)	####@0ƒ}ƒgƒŠƒNƒXì¬
+											###ã€€å¢ƒç•Œç·šâ†’ãƒ©ã‚¹ã‚¿ãƒ¼
+	xn<-length(xaxis);yn<-length(yaxis)	####ã€€0ãƒãƒˆãƒªã‚¯ã‚¹ä½œæˆ
 	m<-matrix(0,nrow=xn,ncol=yn)
 	xnn<-c();for (i in 1:length(xxx))xnn<-c(xnn,nearest(xaxis,xxx[i]))
 	ynn<-c();for (i in 1:length(yyy))ynn<-c(ynn,nearest(yaxis,yyy[i]))
@@ -691,18 +919,28 @@ l2r<-function(xaxis,yaxis,px00,py00){
 	return(m)
 										}
 
+#' Title
+#'
+#' @param xaxis
+#' @param yaxis
+#' @param pl
+#'
+#' @return
+#' @export
+#'
+#' @examples
 ll2r<-function(xaxis,yaxis,pl){
 
         ##############################################
-        ## pl ƒ‰ƒCƒ“ƒf[ƒ^EƒŠƒXƒg@ipx,py ƒxƒNƒgƒ‹j
-        ## x,y@ƒCƒ[ƒWEÀ•W
+        ## pl ãƒ©ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ»ãƒªã‚¹ãƒˆã€€ï¼ˆpx,py ãƒ™ã‚¯ãƒˆãƒ«ï¼‰
+        ## x,yã€€ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ»åº§æ¨™
         ##############################################
 	 ### xaxis<-x;yaxis<-y;pl<-rind
-        xn<-length(xaxis);yn<-length(yaxis)     ####@0ƒ}ƒgƒŠƒNƒXì¬
+        xn<-length(xaxis);yn<-length(yaxis)     ####ã€€0ãƒãƒˆãƒªã‚¯ã‚¹ä½œæˆ
         m<-matrix(0,nrow=xn,ncol=yn)
 
 
-	for (ii in 1:length(pl)){			###@‹«ŠEü¨ƒ‰ƒXƒ^[
+	for (ii in 1:length(pl)){			###ã€€å¢ƒç•Œç·šâ†’ãƒ©ã‚¹ã‚¿ãƒ¼
         px<-pl[[ii]][,1];py<-pl[[ii]][,2]
         xy_<-hokan(px,py,xaxis,yaxis)
         xxx<-xy_[,1]; yyy<-xy_[,2];
@@ -715,29 +953,58 @@ ll2r<-function(xaxis,yaxis,pl){
 
 
 
+#' Title
+#'
+#' @param v0
+#'
+#' @return
+#' @export
+#'
+#' @examples
 split0<-function(v0){
 	##v0<-c(1,2,3,0,4,5,6,0,0,7,8)
-	i<-which(v0!=0)					#### ‘ÎÛ“_’Šo
-	j<-which(head(i,-1)!=tail(i,-1)-1)+1		####@˜A‘±•”•ª’Šo
-	k<-c(1,j,length(i)+1)				####@‹æØ‚è”ÍˆÍ
-	nn<-length(k)-1					####@ƒuƒƒbƒN”
-							####@ƒŠƒXƒg‰»
+	i<-which(v0!=0)					#### å¯¾è±¡ç‚¹æŠ½å‡º
+	j<-which(head(i,-1)!=tail(i,-1)-1)+1		####ã€€é€£ç¶šéƒ¨åˆ†æŠ½å‡º
+	k<-c(1,j,length(i)+1)				####ã€€åŒºåˆ‡ã‚Šç¯„å›²
+	nn<-length(k)-1					####ã€€ãƒ–ãƒ­ãƒƒã‚¯æ•°
+							####ã€€ãƒªã‚¹ãƒˆåŒ–
 	v_<-c(); for (ii in 1:nn)v_<-c(v_,list(i[k[ii]:(k[ii+1]-1)]))
 	return(v_)
 				}
 
 #### saitan
+#' Title
+#'
+#' @param xx0
+#' @param yy0
+#' @param xx
+#' @param yy
+#'
+#' @return
+#' @export
+#'
+#' @examples
 saitan<-function(xx0,yy0,xx,yy){
 	saitan0<-function(xx0,yy0)min(sqrt((xx0-xx)^2+(yy0-yy)^2))
 	mapply(saitan0,xx0,yy0)
 				}
 
-TotalLength<-function(XY)sum(distance(XY[,1],XY[,2]))
+#' Title
+#'
+#' @param XY
+#'
+#' @return
+#' @export
+#'
+#' @examples
+TotalLength<-function(XY){
+  sum(distance(XY[,1],XY[,2]))
+}
 
 TotalLength2<-function(l,pn){
-	#####@ƒŠƒXƒg‚É•ªŠ„‚³‚ê‚½“¹‚ğŒ‹‡@
-	##l<-rind; 						##ƒgƒ‰ƒbƒNEƒŠƒXƒg
-	##pn<-lapply(lapply(rind,XYnen),split0)	##lH—Ñ“à‚Ìƒ|ƒCƒ“ƒg‚Ì”Ô†
+	#####ã€€ãƒªã‚¹ãƒˆã«åˆ†å‰²ã•ã‚ŒãŸé“ã‚’çµåˆã€€
+	##l<-rind; 						##ãƒˆãƒ©ãƒƒã‚¯ãƒ»ãƒªã‚¹ãƒˆ
+	##pn<-lapply(lapply(rind,XYnen),split0)	##äººå·¥æ—å†…ã®ãƒã‚¤ãƒ³ãƒˆã®ç•ªå·
 	ln<-length(l)
 	TL<-c();for (ii in 1:length(l)){
 	tl<-c();for (i in 1:length(pn[[ii]])){
@@ -752,10 +1019,32 @@ TotalLength2<-function(l,pn){
 
 
 ######
+#' Affine conversion from original points
+#'
+#' @param X vector of x coordinates of oroginal points
+#' @param Y vector of y coordinates of oroginal points
+#' @param x1 oroginal coordinates of 2 points
+#' @param y1
+#' @param x2
+#' @param y2
+#' @param x1_
+#' @param y1_
+#' @param x2_
+#' @param y2_
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' X=c(1:5,1:5);Y=rep(c(1,5),each=5) # oroginal coordinates
+#' x1 =1 ;y1 = 1;x2 = 5 ;y2=5				  # oroginal coordinates of 2 points
+#' x1_=30;y1_=30;x2_= 25;y2_=40		    # conversion coordinates of  2 points (xy1, xy2)
+#' XY_ <- affineXY(X,Y,x1,y1,x2,y2,x1_,y1_,x2_,y2_) # Affin conversion coordinates
+#' plot(X,Y,type="b",col="red",xlim=c(0,40),ylim=c(0,40))
+#' points(XY_,type="b",col="blue")
+
 affineXY <- function(X,Y,x1,y1,x2,y2,x1_,y1_,x2_,y2_){
-	#X=c(1:5,1:5);Y=rep(c(1,5),each=5) 	# oroginal coordinates
-	#x1=1;y1=1;x2=5;y2=5				# oroginal coordinates of 2 points
-	#x1_=30;y1_=30;x2_=25;y2_=40		# conversion coordinates of  2 points (xy1, xy2)
+
 	dx <- x2-x1   ; dy <- y2-y1   ;dx_<- x2_-x1_ ; dy_<- y2_-y1_
 	dxx<- x1_-x1  ; dyy<- y1_-y1
 	da <-atan2(dy_,dx_)-atan2(dy,dx)
@@ -765,14 +1054,18 @@ affineXY <- function(X,Y,x1,y1,x2,y2,x1_,y1_,x2_,y2_){
 }
 
 
-#####
-#ƒpƒbƒP[ƒW‚ÌŒÄ‚Ño‚µ
-library("shapefiles")
-
-
 ###########################################
-shplines <- function(filename="./shp/2021’r“„line-4",id="ID_1"){
-	d <- read.shapefile(filename)
+#' Title
+#'
+#' @param filename
+#' @param id
+#'
+#' @return
+#' @export
+#'
+#' @examples
+shplines <- function(filename="./shp/2021æ± å¡˜line-4",id="ID_1"){
+	d <- shapefiles::read.shapefile(filename)
 	dbf <- d$dbf$dbf	# names(dbf)
 	ID<-as.vector(d$dbf$dbf[,id])
 	l <- c()
@@ -783,8 +1076,16 @@ shplines <- function(filename="./shp/2021’r“„line-4",id="ID_1"){
 	return(l)
 }
 
-shppoints <- function(filename="./shp/2021’r“„line-4-points"){
-	d <- read.shapefile(filename)
+#' Title
+#'
+#' @param filename
+#'
+#' @return
+#' @export
+#'
+#' @examples
+shppoints <- function(filename="./shp/2021æ± å¡˜line-4-points"){
+	d <- shapefiles::read.shapefile(filename)
 	dbf<-d$dbf$dbf
 	xy<-d$shp$shp[,c(2,3)]
 	return(data.frame(xy,dbf))

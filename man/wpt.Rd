@@ -2,7 +2,7 @@
 % Please edit documentation in R/GISsource.r
 \name{wpt}
 \alias{wpt}
-\title{Title}
+\title{wptXY　カシミールのウェイポイント・データからXY、ラベルを抽出する関数}
 \usage{
 wpt(filename)
 }
@@ -10,8 +10,15 @@ wpt(filename)
 \item{filename}{}
 }
 \value{
-
+x,y coordinates of way points (.wpt)
 }
 \description{
-Title
+wptXY　カシミールのウェイポイント・データからXY、ラベルを抽出する関数
+}
+\examples{
+ .dir<-system.file("extdata",package="GISsource")
+  filename <- paste0(.dir,"/演習林範囲.wpt")
+  wpt(filename)
+
+カシミールwptファイルの行からラベルデータ取得　
 }

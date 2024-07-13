@@ -2,16 +2,22 @@
 % Please edit documentation in R/GISsource.r
 \name{XY7Code}
 \alias{XY7Code}
-\title{Title}
+\title{平面直角座標系第7系 Map Code}
 \usage{
 XY7Code(JGD7dv, JGD7dh)
 }
 \arguments{
-\item{JGD7dh}{}
+\item{JGD7dv}{vertical number}
+
+\item{JGD7dh}{horizontal number}
 }
 \value{
-
+list of map information
 }
 \description{
-Title
+平面直角座標系第7系 Map Code
+}
+\examples{
+XY7Code(1,1)
+
 }

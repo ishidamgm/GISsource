@@ -9,9 +9,6 @@ split0(v0)
 \arguments{
 \item{v0}{}
 }
-\value{
-
-}
 \description{
 Title
 }

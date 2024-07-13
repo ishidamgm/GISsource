@@ -2,16 +2,23 @@
 % Please edit documentation in R/GISsource.r
 \name{S}
 \alias{S}
-\title{Title}
+\title{緯度を与えて赤道からの子午線弧長を求める計算}
 \usage{
 S(lat, lat00 = "36.00000", lon00 = "137.100000")
 }
 \arguments{
-\item{lon00}{}
+\item{lat}{latitude}
+
+\item{lat00}{latitudinal original point Japanese rectangular system}
+
+\item{lon00}{longitudinal original point Japanese rectangular system}
 }
 \value{
-
+Meridian Arc Length
 }
 \description{
-Title
+緯度を与えて赤道からの子午線弧長を求める計算
+}
+\examples{
+S(36.50*degree)
 }

@@ -2,16 +2,13 @@
 % Please edit documentation in R/GISsource.r
 \name{R2Grass_AsciiRaster}
 \alias{R2Grass_AsciiRaster}
-\title{Title}
+\title{R image ->   Grass ASCII raster grid}
 \usage{
 R2Grass_AsciiRaster(we, sn, m, filename)
 }
 \arguments{
 \item{filename}{}
 }
-\value{
-
-}
 \description{
-Title
+R image ->   Grass ASCII raster grid
 }

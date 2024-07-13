@@ -10,8 +10,11 @@ xy2ll(x, y, lat00 = "36.00000", lon00 = "137.100000")
 \item{lon00}{}
 }
 \value{
-
+latitudde and longitude
 }
 \description{
 Title
+}
+\examples{
+xy2ll(0,0)
 }

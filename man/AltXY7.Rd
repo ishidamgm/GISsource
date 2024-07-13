@@ -2,16 +2,23 @@
 % Please edit documentation in R/GISsource.r
 \name{AltXY7}
 \alias{AltXY7}
-\title{Title}
+\title{read DEM .txt data of JGD7
+ @param DEMdir directory of DEM data}
 \usage{
-AltXY7(JGD7dv, JGD7dh)
+AltXY7(DEMdir, JGD7dv, JGD7dh)
 }
 \arguments{
-\item{JGD7dh}{}
+\item{JGD7dv}{vertical number}
+
+\item{JGD7dh}{horizontal number}
 }
 \value{
-
+dem data
 }
 \description{
-Title
+read DEM .txt data of JGD7
+ @param DEMdir directory of DEM data
+}
+\examples{
+# not run
 }

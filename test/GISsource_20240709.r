@@ -85,6 +85,101 @@ nearest <-function(v,q){
   }
 
 
+
+
+##　
+#' カシミールtrkファイルの行から緯度、経度データ取得　(ddd.dddddd 形式で保存されたもの)
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+lonlat <- function(s) {as.numeric(c(substr(s,17,27),substr(s,5,14)))}
+
+##　
+#' カシミールwptファイルの行から緯度、経度データ取得　(ddd.dddddd 形式で保存されたもの)
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' .dir<-system.file("extdata",package="GISsource")
+#' lonlatWPT("演習林範囲.wpt")
+lonlatWPT <- function(s) {as.numeric(c(substr(s,24,34),substr(s,12,21)))}
+
+##　
+#' カシミールwptファイルの行からラベルデータ取得　
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
+textWPT <- function(s) {sub(" .* ","",substr(s,61,100))}
+
+
+#'　trkll　カシミールのトラック行データから緯度・経度を抽出する関数
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#'
+trkll<-function(s){
+lon=as.numeric(substr(s,17,27));lat=as.numeric(substr(s,5,14))
+c(lon,lat)
+}
+
+
+#'  trkXY　カシミールのトラック行データからXYを抽出する関数
+#'
+#' @param s
+#'
+#' @return
+#' @export
+#'
+#' @examples
+trkXY<-function(s){
+lon=as.numeric(substr(s,17,27));lat=as.numeric(substr(s,5,14))
+ll2xy(lat*degree,lon*degree) ###+GPSdxy
+}
+
+
+#' trkXYn　カシミールのn番目のトラックデータからXYを抽出する関数
+#'
+#' @param dir
+#' @param filename
+#' @param ii
+#'
+#' @return
+#' @export
+#'
+#' @examples
+trkXYn<-function(dir,filename,ii){
+	##dir=GISdir;filename="BeltTransect.trk"
+ 	l<-readLines(paste(dir,"/",filename,sep=""))
+ 	dn=length(l)
+	q="H  LATITUDE    LONGITUDE    DATE      TIME     ALT"
+	mm<-which(l==q)
+	mmm<-append(mm,dn+4)
+
+	s<-lonlat(l[(mmm[ii]+1):(mmm[ii+1]-4)]);
+	n=length(s);
+	lon=s[1:(n/2)];lat=s[(n/2+1):n];
+	d<-ll2xy(lat*degree,lon*degree)
+	(TRKx<-d[(n/2+1):n])
+	(TRKy<-d[1:(n/2)])
+	(d<-matrix(c(TRKx,TRKy),ncol=2))
+				}
 　
 #' カシミールの全トラックデータからリスト形式でXYを抽出する関数
 #'
@@ -98,24 +193,12 @@ nearest <-function(v,q){
 #'
 #' .dir<-system.file("extdata",package="GISsource")
 #' dir(.dir)
-#' (rng<-wpt(paste0(.dir,"/演習林範囲.wpt")))
-#' gaishu<-trk(paste0(.dir,"/演習林外周.trk" ))
-#' plot(gaishu[[1]],type="l")
-#' plot()
-#' XY<-trk(paste0(.dir,"/演習林林班.trk"))
-#' sapply(XY,lines)
-#'
+#' trk(paste0(.dir,"/演習林林班.trk")
 #'
 trk<-function(filename){
 	### filename="./inst/extdata/演習林林班.trk"
-  ### filename="./inst/extdata/演習林外周.trk"
-  ### dir("./inst/extdata/")
-  lonlat <- function(s) {as.numeric(c(substr(s,17,27),substr(s,5,14)))}
 
-  l<-readLines(filename,encoding = "SHIFT_JIS")
-  l <- iconv(l, from = "SHIFT_JIS", to = "UTF-8")
-
-
+       l<-readLines(filename)
  	dn=length(l)
 	q="H  LATITUDE    LONGITUDE    DATE      TIME     ALT"
 	mm<-which(l==q)
@@ -142,22 +225,14 @@ trk<-function(filename){
 #'
 #' @param filename
 #'
-#' @return x,y coordinates of way points (.wpt)
+#' @return
 #' @export
 #'
 #' @examples
-#'  .dir<-system.file("extdata",package="GISsource")
-#'   filename <- paste0(.dir,"/演習林範囲.wpt")
-#'   wpt(filename)
 #'
  wpt<-function(filename){
 	##filename<-"../gps/演習林範囲2.wpt"
-  lonlatWPT <- function(s) {as.numeric(c(substr(s,24,34),substr(s,12,21)))}
-  #' カシミールwptファイルの行からラベルデータ取得　
-  textWPT <- function(s) {sub(" .* ","",substr(s,61,100))}
-
-  l<-readLines(filename,encoding = "SHIFT_JIS")
-  l <- iconv(l, from = "SHIFT_JIS", to = "UTF-8")
+ 	l<-readLines(filename)
 	mm<-substring(l,1,1)=="W"
 	s<-lonlatWPT(l[mm])
 	txt<-textWPT(l[mm])
@@ -169,18 +244,33 @@ trk<-function(filename){
 
 
 
+ wptXYtxt<-function(dir,filename){
+	##dir=GISdir;filename="waypoints.wpt"
+ 	l<-readLines(paste(dir,"/",filename,sep=""))
+	mm<-substring(l,1,1)=="W"
+	s<-lonlatWPT(l[mm])
+	txt<-textWPT(l[mm])
+	n=length(s);
+	lon=s[1:(n/2)];lat=s[(n/2+1):n];
+	d<-ll2xy(lat*degree,lon*degree)
+	(WPTx<-d[(n/2+1):n])
+	(WPTy<-d[1:(n/2)])
+	(d<-matrix(c(WPTx,WPTy),ncol=2))
+       list(d,txt)
+		}
 
 
-#' 平面直角座標系第7系 Map Code
+
+#' Title
 #'
-#' @param JGD7dv vertical number
-#' @param JGD7dh horizontal number
-#' @return list of map information
+#' @param JGD7dv
+#' @param JGD7dh
+#'
+#' @return
 #' @export
 #'
 #' @examples
 #' XY7Code(1,1)
-#'
 XY7Code <-function(JGD7dv,JGD7dh){
 (JGD7code<-paste(
 LETTERS[11+floor(-JGD7dv/30000)],
@@ -202,16 +292,16 @@ list(JGD7code,dn,dv,dh)
 
 
 #' read DEM .txt data of JGD7
-#'  @param DEMdir directory of DEM data
-#' @param JGD7dv vertical number
-#' @param JGD7dh horizontal number
 #'
-#' @return dem data
+#' @param JGD7dv
+#' @param JGD7dh
+#'
+#' @return
 #' @export
 #'
 #' @examples
-#' # not run
-AltXY7<-function(DEMdir,JGD7dv,JGD7dh){
+#'
+AltXY7<-function(JGD7dv,JGD7dh){
 fn<-XY7Code(JGD7dv,JGD7dh)[[1]]
 dn<-XY7Code(JGD7dv,JGD7dh)[[2]]
 fn<-dir(path=DEMdir,pattern =paste(fn,".*.txt",sep=""))
@@ -282,13 +372,15 @@ n2s<-function(d)
 
 
 
-#' 緯度を与えて赤道からの子午線弧長を求める計算
+
+
+#' Title
 #'
-#' @param lat      latitude
-#' @param lat00    latitudinal original point Japanese rectangular system
-#' @param lon00    longitudinal original point Japanese rectangular system
+#' @param lat
+#' @param lat00
+#' @param lon00
 #'
-#' @return  Meridian Arc Length
+#' @return
 #' @export
 #'
 #' @examples
@@ -346,7 +438,7 @@ S<-function(lat,lat00="36.00000",lon00="137.100000"){
 #' @param lat00
 #' @param lon00
 #'
-#' @return latitudde and longitude
+#' @return
 #' @export
 #'
 #' @examples
@@ -414,7 +506,7 @@ xy2ll<-function(x,y,lat00="36.00000",lon00="137.100000"){
 #' @export
 #'
 #' @examples
-#' ll2xy(36.5*degree,137.1*degree)
+#' ll2xy(36.5*degree,137.15*degree)
 #'
 ll2xy<-function (lat,lon,lat00="36.00000",lon00="137.100000"){
 　##### lat00・lon00 座標系原点の緯度・経度　【デフォルトは第7系】

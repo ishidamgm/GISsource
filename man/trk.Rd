@@ -10,8 +10,21 @@ trk(filename)
 \item{filename}{}
 }
 \value{
-
+list of x,y matrix
 }
 \description{
 カシミールの全トラックデータからリスト形式でXYを抽出する関数
+}
+\examples{
+
+.dir<-system.file("extdata",package="GISsource")
+dir(.dir)
+(rng<-wpt(paste0(.dir,"/演習林範囲.wpt")))
+gaishu<-trk(paste0(.dir,"/演習林外周.trk" ))
+plot(gaishu[[1]],type="l")
+plot()
+XY<-trk(paste0(.dir,"/演習林林班.trk"))
+sapply(XY,lines)
+
+
 }

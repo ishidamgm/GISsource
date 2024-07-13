@@ -2,16 +2,21 @@
 % Please edit documentation in R/GISsource.r
 \name{TotalLength}
 \alias{TotalLength}
-\title{Title}
+\title{Total length of circumference of polygon XY}
 \usage{
 TotalLength(XY)
 }
 \arguments{
-\item{XY}{}
+\item{XY}{XY matrix}
 }
 \value{
-
+Total length
 }
 \description{
-Title
+Total length of circumference of polygon XY
+}
+\examples{
+XY <- cbind(X=c(1,2,3,2,1),Y=c(1,2,1,0,1))
+plot(XY,type="b")
+TotalLength(XY)
 }

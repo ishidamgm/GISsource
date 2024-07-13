@@ -7,11 +7,20 @@
 area(xl, yl)
 }
 \arguments{
-\item{yl}{}
+\item{xl}{x coordinates}
+
+\item{yl}{y coordinates}
 }
 \value{
-
+numeric
 }
 \description{
 calculate polygonal area
+}
+\examples{
+xl <- c(0,1,2,1)
+yl <- c(1,2,1,0)
+plot(xl,yl,type="b") ; polygon(xl,yl)
+area(xl,yl)
+
 }

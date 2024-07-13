@@ -1,14 +1,13 @@
 Package: GISsource
 Type: Package
-Title: What the Package Does (Title Case)
+Title: GIS functions for Japanese rectangular coordinate systems and  Kashmir3D files, and so on.
 Version: 0.1.0
 Author: ISHIDA Megumi
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Maintainer: The package maintainer <ishidam@sanchikanri.com>
+Description: GIS functions for Japanese rectangular coordinate systems and  Kashmir3D files, and so on.
+License: GPL(>=2)
 Encoding: UTF-8
 LazyData: true
 Imports: 
     shapefiles
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.1

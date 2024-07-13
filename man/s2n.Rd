@@ -2,7 +2,7 @@
 % Please edit documentation in R/GISsource.r
 \name{s2n}
 \alias{s2n}
-\title{Title}
+\title{角度表現　度分秒<->度 (カシミール3d書式)}
 \usage{
 s2n(d)
 }
@@ -10,8 +10,13 @@ s2n(d)
 \item{d}{}
 }
 \value{
-
+numeric degree
 }
 \description{
-Title
+角度表現　度分秒<->度 (カシミール3d書式)
+}
+\examples{
+s2n("36.300000")
+s2n("36.5959900")
+
 }

@@ -2,16 +2,27 @@
 % Please edit documentation in R/GISsource.r
 \name{hokan}
 \alias{hokan}
-\title{Title}
+\title{interpolate line coordinates}
 \usage{
 hokan(px00, py00, xaxis, yaxis)
 }
 \arguments{
-\item{yaxis}{}
-}
-\value{
+\item{px00}{x coordinates interpolated}
 
+\item{py00}{y coordinates interpolated}
+
+\item{xaxis}{x coordinates for reference}
+
+\item{yaxis}{y coordinates for reference}
 }
 \description{
-Title
+interpolate line coordinates
+}
+\examples{
+
+px00<-1:20 ;  py00<-(1:20)^0.8
+xaxis <-seq(0,21,0.1) ;yaxis <-seq(0,21,0.1)
+pxy<-hokan(px00,py00,xaxis,yaxis)
+plot(px00,py00)
+points(pxy,col="red",pch=".")
 }

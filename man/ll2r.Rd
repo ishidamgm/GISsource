@@ -9,9 +9,6 @@ ll2r(xaxis, yaxis, pl)
 \arguments{
 \item{pl}{}
 }
-\value{
-
-}
 \description{
 Title
 }

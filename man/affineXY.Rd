@@ -2,16 +2,27 @@
 % Please edit documentation in R/GISsource.r
 \name{affineXY}
 \alias{affineXY}
-\title{Title}
+\title{Affine conversion from original points}
 \usage{
 affineXY(X, Y, x1, y1, x2, y2, x1_, y1_, x2_, y2_)
 }
 \arguments{
+\item{X}{vector of x coordinates of oroginal points}
+
+\item{Y}{vector of y coordinates of oroginal points}
+
+\item{x1}{oroginal coordinates of 2 points}
+
 \item{y2_}{}
 }
-\value{
-
-}
 \description{
-Title
+Affine conversion from original points
+}
+\examples{
+X=c(1:5,1:5);Y=rep(c(1,5),each=5) # oroginal coordinates
+x1 =1 ;y1 = 1;x2 = 5 ;y2=5				  # oroginal coordinates of 2 points
+x1_=30;y1_=30;x2_= 25;y2_=40		    # conversion coordinates of  2 points (xy1, xy2)
+XY_ <- affineXY(X,Y,x1,y1,x2,y2,x1_,y1_,x2_,y2_) # Affin conversion coordinates
+plot(X,Y,type="b",col="red",xlim=c(0,40),ylim=c(0,40))
+points(XY_,type="b",col="blue")
 }

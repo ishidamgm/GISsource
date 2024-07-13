@@ -2,16 +2,29 @@
 % Please edit documentation in R/GISsource.r
 \name{saitan}
 \alias{saitan}
-\title{Title}
+\title{Return distance from nearest point in points from a point}
 \usage{
 saitan(xx0, yy0, xx, yy)
 }
 \arguments{
-\item{yy}{}
+\item{xx0}{a point of  x coordinate}
+
+\item{yy0}{a point of  y coordinate}
+
+\item{xx}{vector of x coordinates}
+
+\item{yy}{vector of y coordinates}
 }
 \value{
-
+x y coordinates of nearest point  from a point
 }
 \description{
-Title
+Return distance from nearest point in points from a point
+}
+\examples{
+xx0 <- 10 ; yy0 <- 10
+xx <- 1:20 ; yy <- xx+3
+plot(xx,yy);points(xx0,yy0,col="blue")
+saitan(xx0,yy0,xx,yy)
+
 }

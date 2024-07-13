@@ -2,16 +2,24 @@
 % Please edit documentation in R/GISsource.r
 \name{distance}
 \alias{distance}
-\title{disd}
+\title{distance between points}
 \usage{
 distance(xl, yl)
 }
 \arguments{
-\item{yl}{}
+\item{xl}{x coordinates}
+
+\item{yl}{y coordinates}
 }
 \value{
-
+numeric vector
 }
 \description{
-disd
+distance between points
+}
+\examples{
+xl <- c(0,1,2,1)
+yl <- c(1,2,1,0)
+plot(xl,yl,type="b")
+distance(xl,yl)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/GISsource.r
 \name{n2s}
 \alias{n2s}
-\title{Title}
+\title{角度表現　度<->度分秒 (カシミール3d書式)}
 \usage{
 n2s(d)
 }
@@ -10,16 +10,16 @@ n2s(d)
 \item{d}{}
 }
 \value{
-
+string degree, minutes,secant ddd.mmssss
 }
 \description{
-Title
+角度表現　度<->度分秒 (カシミール3d書式)
 }
 \examples{
-d=137.13416566
+d=137.50
 n2s(d)
 s2n(n2s(d))
-#########  第7系原点
-lat0 = s2n("36.00000")*degree;
-lon0 = s2n("137.100000")*degree;
+#  第7系原点 radian ########
+(lat0 = s2n("36.00000")*degree)
+(lon0 = s2n("137.100000")*degree)
 }

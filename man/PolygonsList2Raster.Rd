@@ -9,9 +9,6 @@ PolygonsList2Raster(PolygonsList, Points, xaxis, yaxis)
 \arguments{
 \item{yaxis}{}
 }
-\value{
-
-}
 \description{
 Title
 }

@@ -9,9 +9,6 @@ Polygon2Raster(px00, py00, p1x, p1y, xaxis, yaxis, m, cl, cl00)
 \arguments{
 \item{cl00}{}
 }
-\value{
-
-}
 \description{
 Title
 }
